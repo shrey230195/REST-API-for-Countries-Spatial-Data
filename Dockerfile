@@ -18,16 +18,12 @@ pip install gdal==2.4.0 && \
 
 COPY requirements.txt ./
 
-# COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
+RUN pip install -r requirements.txt
 
 COPY ./wait-for-postgres.sh /usr/src/app/wait-for-postgres.sh
 
-# RUN chmod +x ./wait-for-postgres.sh
-
-RUN pip install -r requirements.txt
-
+RUN chmod +x ./wait-for-postgres.sh
 
 COPY . /usr/src/app/
 
-# run entrypoint.sh
 ENTRYPOINT ["/usr/src/app/wait-for-postgres.sh"]
