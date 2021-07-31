@@ -1,9 +1,10 @@
-Django==2.2.10
-django-filter==2.4.0
+Django
+django-filter
 django-nose==1.4.6
-djangorestframework==3.10.2
-djangorestframework-gis==0.17
+djangorestframework
+djangorestframework-gis
 protobuf==3.15.4
 psycopg2-binary>=2.8
 gunicorn==19.9.0
-django-rest-swagger==2.2.0
+drf-yasg
+django-rest-swagger
