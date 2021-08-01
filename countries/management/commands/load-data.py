@@ -12,3 +12,5 @@ class Command(BaseCommand):
         if not Countries.objects.exists():
             self.stdout.write('Seeding initial data')
             call_command('loaddata', 'data/db.json')
+            self.stdout.write('Data loaded in Db successfully')
+        self.stdout.write('Db already had some entries')
