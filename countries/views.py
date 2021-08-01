@@ -21,22 +21,20 @@ class CountriesViewSet(viewsets.ModelViewSet):
 	search_fields = ['$name']
 	pagination_class = PageNumberPagination
 
-	@action(detail=False, methods=['post'], serializer_class=CountriesSerializerWithoutGeom)
-	def get_neighbor_countries(self, request):
-		lookup_country = self.request.POST.get('name')
-		if not lookup_country:
-    			return Response({}, status=status.HTTP_200_OK)
-		countries = Countries.objects.filter(name=lookup_country)
+	@action(detail=True, methods=['get'], serializer_class=CountriesSerializerWithoutGeom)
+	def get_neighbor_countries(self, request, pk=None):		
+		if not pk:
+			return Response({}, status=status.HTTP_200_OK)
+		countries = Countries.objects.filter(name=pk)
 		neigbors = Countries.objects.filter(geom__touches=countries[0].geom)		
 		serialized = CountriesSerializerWithoutGeom(neigbors, many = True)
 		return Response(serialized.data, status=status.HTTP_200_OK)
 	
-	@action(detail=False, methods=['post'], serializer_class=CountriesSerializerWithoutGeom)
-	def get_intersecting_countries(self, request):
-		lookup_country = self.request.POST.get('name')
-		if not lookup_country:
-    			return Response({}, status=status.HTTP_200_OK)
-		countries = Countries.objects.filter(name=lookup_country)
+	@action(detail=True, methods=['get'], serializer_class=CountriesSerializerWithoutGeom)
+	def get_intersecting_countries(self, request, pk=None):
+		if not pk:
+			return Response({}, status=status.HTTP_200_OK)
+		countries = Countries.objects.filter(name=pk)
 		neigbors = Countries.objects.filter(geom__intersects=countries[0].geom)		
 		serialized = CountriesSerializerWithoutGeom(neigbors, many = True)
 		return Response(serialized.data, status=status.HTTP_200_OK)

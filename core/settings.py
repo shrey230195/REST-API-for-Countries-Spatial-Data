@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.gis',
     'rest_framework',
-    'rest_framework_gis',
-    'rest_framework_swagger',
-    'countries'
+    'rest_framework_gis',    
+    'countries',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
@@ -74,7 +74,7 @@ TEMPLATES = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 3
+    'PAGE_SIZE': 3,    
 }
 
 WSGI_APPLICATION = 'core.wsgi.application'
