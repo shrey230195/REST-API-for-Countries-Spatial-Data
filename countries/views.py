@@ -30,6 +30,16 @@ class CountriesViewSet(viewsets.ModelViewSet):
 		neigbors = Countries.objects.filter(geom__touches=countries[0].geom)		
 		serialized = CountriesSerializerWithoutGeom(neigbors, many = True)
 		return Response(serialized.data, status=status.HTTP_200_OK)
+	
+	@action(detail=False, methods=['post'], serializer_class=CountriesSerializerWithoutGeom)
+	def get_intersecting_countries(self, request):
+		lookup_country = self.request.POST.get('name')
+		if not lookup_country:
+    			return Response({}, status=status.HTTP_200_OK)
+		countries = Countries.objects.filter(name=lookup_country)
+		neigbors = Countries.objects.filter(geom__intersects=countries[0].geom)		
+		serialized = CountriesSerializerWithoutGeom(neigbors, many = True)
+		return Response(serialized.data, status=status.HTTP_200_OK)
 
 	@action(detail=False, methods=['get'])
 	def load_data(self, request):				
