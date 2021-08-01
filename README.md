@@ -2,7 +2,9 @@
 
 ## In this challenge we will develop python django REST api for spatial data and test the API Data
 
-You can download world countries geojson data here: https://datahub.io/core/geo-countries#resource-geo-countries_zip Tasks
+You can download world countries geojson data here: https://datahub.io/core/geo-countries#resource-geo-countries_zip 
+
+### Tasks
 
 - Download the world countries geojson data 
 - Create REST API for that data.  
@@ -12,6 +14,7 @@ You can download world countries geojson data here: https://datahub.io/core/geo-
   - Spatial query: Get all counties Intersecting with India 
  
 ### Requirements and submission guidelines 
+
 - The solution needs to be implemented in Python, preferably 3.x 
 - Please use multiple docker containers for the application. 
   - Ex: One container for Django APP, One for database.  
