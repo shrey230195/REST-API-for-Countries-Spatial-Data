@@ -29,6 +29,7 @@ class CountriesSerializer(DynamicFieldsModelSerializer, GeoFeatureModelSerialize
 		model = Countries
 		fields = '__all__'
 		geo_field = 'geom'
+		extra_kwargs = {'geom': { 'required': True}}
 
 class CountriesSerializerWithoutGeom(serializers.ModelSerializer):
 

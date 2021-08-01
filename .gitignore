@@ -1,4 +1,5 @@
-core/__pycache__/
-countries/__pycache__/
-countries/management/commands/__pycache__/
-static/
+core/__pycache__
+countries/__pycache__
+countries/management/commands/__pycache__
+countries/migrations
+static
